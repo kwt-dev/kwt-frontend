@@ -1,0 +1,64 @@
+@import 'tailwindcss';
+
+/* Additional styles */
+@import './additional-styles/utility-patterns.css';
+@import './additional-styles/theme.css';
+
+/* Custom animations */
+@keyframes endless {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-245px);
+  }
+}
+@keyframes shine {
+  0% {
+    top: 0;
+    transform: translateY(-100%) scaleY(10);
+    opacity: 0;
+  }
+  2% {
+    opacity: 0.5;
+  }
+  40% {
+    top: 100%;
+    transform: translateY(0) scaleY(200);
+    opacity: 0;
+  }
+  100% {
+    top: 100%;
+    transform: translateY(0) scaleY(1);
+    opacity: 0;
+  }
+}
+@keyframes float {
+  0% {
+    transform: translateY(3%);
+  }
+  50% {
+    transform: translateY(-3%);
+  }
+  100% {
+    transform: translateY(3%);
+  }
+}
+@keyframes infinite-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: rgb(229 231 235);
+  }
+}
