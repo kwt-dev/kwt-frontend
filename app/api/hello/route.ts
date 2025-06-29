@@ -1,3 +1,7 @@
 export async function GET(request: Request) {
-  return new Response('Hello, Next.js!')
+  return Response.json({ 
+    status: 'ok', 
+    timestamp: new Date().toISOString(),
+    service: 'kings-window-tint-frontend'
+  })
 }
