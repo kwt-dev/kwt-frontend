@@ -1,57 +1,93 @@
-import Image from 'next/image'
-import Particles from './particles'
-import Illustration from '@/public/images/glow-bottom.svg'
+import Image from 'next/image';
+import KingsButton from './ui/kings-button';
 
 export default function Hero() {
   return (
-    <section>
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
-
-        {/* Particles animation */}
-        <Particles className="absolute inset-0 -z-10" />
-
-        {/* Illustration */}
-        <div className="absolute inset-0 -z-10 -mx-28 rounded-b-[3rem] pointer-events-none overflow-hidden" aria-hidden="true">
-          <div className="absolute left-1/2 -translate-x-1/2 bottom-0 -z-10">
-            <Image src={Illustration} className="max-w-none" width={2146} priority alt="Hero Illustration" />
-          </div>
+    <section className="w-full">
+      <div className="relative h-140 flex max-w-7xl mx-auto items-end overflow-hidden pt-24 rounded-b-[3rem]">
+        {/* Background Image */}
+        <div id="backgroundHeroImg" className="absolute inset-0 rounded-b-[3rem] overflow-hidden">
+          <Image
+            src="/images/hero_bg.webp"
+            alt="Luxury BMW with professional window tinting"
+            fill
+            className="object-cover object-center"
+            priority
+          />
+          {/* Dark overlay for text readability */}
+          {/* <div className="absolute inset-0 bg-obsidian/40"></div> */}
         </div>
 
-        <div className="pt-32 pb-16 md:pt-52 md:pb-32">
-
+        <div className="relative w-full max-w-7xl mb-14 mx-auto px-12 sm:px-18">
           {/* Hero content */}
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="mb-6" data-aos="fade-down">
-              <div className="inline-flex relative before:absolute before:inset-0 before:bg-purple-500 before:blur-md">
-                <a className="btn-sm py-0.5 text-slate-300 hover:text-white transition duration-150 ease-in-out group [background:linear-gradient(var(--color-purple-500),var(--color-purple-500))_padding-box,linear-gradient(var(--color-purple-500),var(--color-purple-200)_75%,transparent_100%)_border-box] relative before:absolute before:inset-0 before:bg-slate-800/50 before:rounded-full before:pointer-events-none shadow-sm" href="#0">
-                  <span className="relative inline-flex items-center">
-                    API Studio is now in beta <span className="tracking-normal text-purple-500 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">-&gt;</span>
-                  </span>
-                </a>
-              </div>
-            </div>
-            <h1 className="h1 bg-clip-text text-transparent bg-linear-to-r from-slate-200/60 via-slate-200 to-slate-200/60 pb-4" data-aos="fade-down">The API Security Framework</h1>
-            <p className="text-lg text-slate-300 mb-8" data-aos="fade-down" data-aos-delay="200">Our landing page template works on all devices, so you only have to set it up once, and get beautiful results forever.</p>
-            <div className="max-w-xs mx-auto sm:max-w-none sm:inline-flex sm:justify-center space-y-4 sm:space-y-0 sm:space-x-4" data-aos="fade-down" data-aos-delay="400">
-              <div>
-                <a className="btn text-slate-900 bg-linear-to-r from-white/80 via-white to-white/80 hover:bg-white w-full transition duration-150 ease-in-out group" href="#0">
-                  Get Started <span className="tracking-normal text-purple-500 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">-&gt;</span>
-                </a>
-              </div>
-              <div>
-                <a className="btn text-slate-200 hover:text-white bg-slate-900/25 hover:bg-slate-900/30 w-full transition duration-150 ease-in-out" href="#0">
-                  <svg className="shrink-0 fill-slate-300 mr-3" xmlns="http://www.w3.org/2000/svg" width="16" height="16">
-                    <path d="m1.999 0 1 2-1 2 2-1 2 1-1-2 1-2-2 1zM11.999 0l1 2-1 2 2-1 2 1-1-2 1-2-2 1zM11.999 10l1 2-1 2 2-1 2 1-1-2 1-2-2 1zM6.292 7.586l2.646-2.647L11.06 7.06 8.413 9.707zM0 13.878l5.586-5.586 2.122 2.121L2.12 16z" />
-                  </svg>
-                  <span>Read the docs</span>
-                </a>
-              </div>
+          <div className="max-w-3xl flex flex-col justify-end gap-4 text-left">
+            <h1 className="text-white w-[75%] text-5xl" data-aos="fade-right">
+              STYLE & PROTECTION THAT <span className="text-gold-accent italic">TRULY</span> LASTS
+            </h1>
+
+            <p
+              className="text-white max-w-2xl leading-snug"
+              data-aos="fade-right"
+              data-aos-delay="200"
+            >
+              Family-owned for 25+ years, we combine premium materials with precision craftsmanship
+              to protect what you value most.
+            </p>
+
+            <div className="" data-aos="fade-right" data-aos-delay="400">
+              <KingsButton variant="primary" href="/contact" className="text-sm px-8 py-3">
+                PROTECT YOUR VEHICLE TODAY
+              </KingsButton>
             </div>
 
+            {/* Stats Section */}
+            <div className="flex items-center space-x-8" data-aos="fade-up" data-aos-delay="600">
+              {/* Star Rating */}
+              <div className="flex items-center space-x-2">
+                <div className="flex space-x-1">
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} className="w-5 h-5 fill-gold-accent" viewBox="0 0 20 20">
+                      <path d="M10 1l2.5 6.5H19l-5.5 4 2 6.5L10 14l-5.5 4 2-6.5L1 7.5h6.5L10 1z" />
+                    </svg>
+                  ))}
+                </div>
+                <span
+                  className="text-white text-sm font-medium"
+                  style={{ fontFamily: 'var(--font-poppins)' }}
+                >
+                  5/5 (300+ Reviews)
+                </span>
+              </div>
+
+              {/* Years Experience */}
+              <div className="flex items-center space-x-2">
+                <svg className="w-6 h-6 fill-gold-accent" viewBox="0 0 24 24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                </svg>
+                <span
+                  className="text-white text-sm font-medium"
+                  style={{ fontFamily: 'var(--font-poppins)' }}
+                >
+                  25+ Years Experience
+                </span>
+              </div>
+
+              {/* Certified Professionals */}
+              <div className="flex items-center space-x-2">
+                <svg className="w-6 h-6 fill-gold-accent" viewBox="0 0 24 24">
+                  <path d="M23 12l-2.44-2.79.34-3.69-3.61-.82-1.89-3.2L12 2.96 8.6 1.5 6.71 4.69 3.1 5.5l.34 3.7L1 12l2.44 2.79-.34 3.69 3.61.82 1.89 3.2L12 21.04l3.4 1.46 1.89-3.2 3.61-.82-.34-3.69L23 12zm-10 5l-4-4 1.41-1.41L13 14.17l6.59-6.59L21 9l-8 8z" />
+                </svg>
+                <span
+                  className="text-white text-sm font-medium"
+                  style={{ fontFamily: 'var(--font-poppins)' }}
+                >
+                  Certified Professionals
+                </span>
+              </div>
+            </div>
           </div>
-
         </div>
       </div>
     </section>
-  )
+  );
 }
