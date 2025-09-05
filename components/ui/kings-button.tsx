@@ -4,7 +4,7 @@ import { ReactNode } from 'react'
 interface KingsButtonProps {
   children: ReactNode
   href?: string
-  variant?: 'primary' | 'secondary' | 'ghost' | 'badge'
+  variant?: 'primary' | 'secondary' | 'ghost' | 'badge' | 'gold'
   size?: 'sm' | 'md' | 'lg'
   className?: string
   onClick?: () => void
@@ -34,7 +34,10 @@ export default function KingsButton({
     ghost: `btn text-light-grey hover:text-white bg-transparent hover:bg-dark-grey/30 w-full border border-light-grey/30`,
     
     // Badge style (like the original template's announcement badge)
-    badge: `btn-sm py-0.5 text-light-grey hover:text-white [background:linear-gradient(var(--color-king-red),var(--color-king-red))_padding-box,linear-gradient(var(--color-king-red),var(--color-gold-accent)_75%,transparent_100%)_border-box] relative before:absolute before:inset-0 before:bg-obsidian/50 before:rounded-full before:pointer-events-none shadow-sm`
+    badge: `btn-sm py-0.5 text-light-grey hover:text-white [background:linear-gradient(var(--color-king-red),var(--color-king-red))_padding-box,linear-gradient(var(--color-king-red),var(--color-gold-accent)_75%,transparent_100%)_border-box] relative before:absolute before:inset-0 before:bg-obsidian/50 before:rounded-full before:pointer-events-none shadow-sm`,
+    
+    // Gold CTA button - glassmorphism design matching Figma  
+    gold: `btn text-white font-semibold relative bg-obsidian/30 backdrop-blur-sm border border-light-brown rounded-xl hover:bg-obsidian/50 transition-all duration-150 ease-in-out w-full shadow-[0_0_15px_rgba(245,197,66,0.3)] hover:shadow-[0_0_20px_rgba(245,197,66,0.4)]`
   }
 
   const content = (
@@ -42,6 +45,11 @@ export default function KingsButton({
       {/* Blurred background effect for primary buttons */}
       {variant === 'primary' && (
         <div className="absolute inset-0 bg-[rgba(196,30,58,0.48)] blur-[16.3097px] rounded-[30px] -z-10" />
+      )}
+      
+      {/* Blurred background effect for gold buttons */}
+      {variant === 'gold' && (
+        <div className="absolute inset-0 bg-[rgba(245,197,66,0.48)] blur rounded-[10px] -z-10" />
       )}
       
       <span className="relative inline-flex items-center [text-shadow:rgba(255,255,255,0.33)_0px_0px_7.1px] font-montserrat font-semibold tracking-[0.25px]">

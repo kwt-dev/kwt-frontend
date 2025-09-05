@@ -25,7 +25,7 @@ export default function ServiceCard({
 
   return (
     <div
-      className={`relative w-full h-64 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 ease-in-out border border-light-brown ${className}`}
+      className={`relative w-full h-64 rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 ease-in-out border border-light-brown ${className}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -36,34 +36,34 @@ export default function ServiceCard({
         <div className="absolute inset-0 bg-gradient-to-t from-obsidian/80 via-obsidian/40 to-transparent"></div>
       </div>
 
-      {/* Normal State - Title Only */}
+      {/* Hover Background Gradient */}
       <div
-        className={`absolute inset-0 flex items-end p-4 transition-opacity duration-300 z-10 ${
-          isHovered ? 'opacity-0' : 'opacity-100'
+        className={`absolute inset-0 transition-opacity duration-500 ease-in-out ${
+          isHovered ? 'opacity-100' : 'opacity-0'
         }`}
-      >
+        style={{
+          background: 'radial-gradient(423.05% 216.14% at -25.28% 137.99%, rgba(103, 37, 48, 0.65) 0%, var(--color-obsidian, rgba(4, 7, 7, 0.65)) 100%)'
+        }}
+      />
+
+      {/* Title - slides from bottom to top */}
+      <div className="absolute inset-0 flex items-end p-4 z-20">
         <h3
-          className="text-white text-lg uppercase tracking-wide font-medium"
+          className={`text-white text-lg uppercase tracking-wide font-medium transition-transform duration-500 ease-in-out ${
+            isHovered ? '-translate-y-48' : 'translate-y-0'
+          }`}
           style={{ fontFamily: 'var(--font-montserrat)' }}
         >
           {title}
         </h3>
       </div>
 
-      {/* Hover State - Full Content */}
+      {/* Hover Content - slides up from below */}
       <div
-        className={`absolute inset-0 flex flex-col justify-between p-4 transition-opacity duration-300 z-10 ${
-          isHovered ? 'opacity-100' : 'opacity-0'
+        className={`absolute inset-0 flex flex-col justify-end p-4 transition-transform duration-500 ease-in-out z-10 ${
+          isHovered ? 'translate-y-0' : 'translate-y-full'
         }`}
       >
-        {/* Title at top on hover */}
-        <h3
-          className="text-white text-lg uppercase tracking-wide font-medium"
-          style={{ fontFamily: 'var(--font-montserrat)' }}
-        >
-          {title}
-        </h3>
-
         {/* Content section */}
         <div className="flex-1 flex flex-col justify-center">
           <p
@@ -73,7 +73,7 @@ export default function ServiceCard({
             {description}
           </p>
 
-          <KingsButton variant="secondary" href={buttonHref} className="text-xs px-6 py-2 w-fit">
+          <KingsButton variant="gold" href={buttonHref} className="text-xs px-6 py-2 w-fit">
             {buttonText}
           </KingsButton>
         </div>
