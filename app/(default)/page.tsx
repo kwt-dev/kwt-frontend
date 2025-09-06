@@ -5,29 +5,42 @@ export const metadata = {
 
 import Hero from '@/components/hero';
 import ServicesSection from '@/components/services-section';
-import Clients from '@/components/clients';
 import Features from '@/components/features';
-import Features02 from '@/components/features-02';
-import Features03 from '@/components/features-03';
-import TestimonialsCarousel from '@/components/testimonials-carousel';
-import Features04 from '@/components/features-04';
-import Pricing from './pricing-section';
-import Testimonials from '@/components/testimonials';
-import Cta from '@/components/cta';
+// New custom sections for King's redesign
+import ServicesShowcase from '@/components/services-showcase';
+import KingsDifference from '@/components/kings-difference';
+import HeatReality from '@/components/heat-reality';
+import TrustSocialProof from '@/components/trust-social-proof';
+import Faqs from '@/components/faqs';
+import FinalCta from '@/components/final-cta';
 
 export default function Home() {
   return (
     <>
       <Hero />
+      {/* Mini services directly below hero */}
       <ServicesSection />
+
+      {/* Appointment stepper placeholder - keep as provided */}
       <Features />
-      <Features02 />
-      <Features03 />
-      <TestimonialsCarousel />
-      <Features04 />
-      <Pricing />
-      <Testimonials />
-      <Cta />
+
+      {/* Main services showcase (large panel with tabs) */}
+      <ServicesShowcase />
+
+      {/* King's Difference stats & narrative */}
+      <KingsDifference />
+
+      {/* Heat & Damage Reality panel */}
+      <HeatReality />
+
+      {/* Trust & Social Proof strip */}
+      <TrustSocialProof />
+
+      {/* FAQs populated with client copy */}
+      <Faqs />
+
+      {/* Final conversion CTA */}
+      <FinalCta />
     </>
   );
 }

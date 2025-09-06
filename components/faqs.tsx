@@ -1,84 +1,59 @@
 export default function Faqs() {
+  const faqs = [
+    {
+      q: 'Will my windows be too dark or look “aftermarket”?',
+      a:
+        "We help you choose the right shade for comfort, visibility, and legal compliance. Our computer-cut patterns ensure a factory‑level fit with clean edges that look intentional, not aftermarket.",
+    },
+    {
+      q: 'How long does installation take?',
+      a:
+        'Most vehicles are completed in 2–3 hours. We never rush quality—each vehicle receives the time needed for perfect results. Relax in our lounge with Wi‑Fi or drop off and return later.',
+    },
+    {
+      q: 'Will tint interfere with electronics or cell signal?',
+      a:
+        'No. We use premium ceramic films that do not interfere with electronics or signals. You get heat rejection and UV protection without compromise.',
+    },
+    {
+      q: 'What if I notice an issue after installation?',
+      a:
+        'Your satisfaction is guaranteed. Any concern within 30 days is addressed immediately at no charge. Our lifetime warranty covers materials and workmanship—if tint bubbles, peels, or fades, we replace it free.',
+    },
+    {
+      q: 'How far in advance should I book?',
+      a:
+        'We recommend booking 1–2 weeks ahead, especially during peak summer. Premium appointment slots fill quickly.',
+    },
+  ]
+
   return (
-  <section className="relative">
-
-    {/* Blurred shape */}
-    <div className="absolute top-0 -translate-y-1/3 left-1/2 -translate-x-1/2 ml-24 blur-2xl opacity-50 pointer-events-none -z-10" aria-hidden="true">
-      <svg xmlns="http://www.w3.org/2000/svg" width="434" height="427">
-        <defs>
-          <linearGradient id="bs3-a" x1="19.609%" x2="50%" y1="14.544%" y2="100%">
-            <stop offset="0%" stopColor="#6366F1" />
-            <stop offset="100%" stopColor="#6366F1" stopOpacity="0" />
-          </linearGradient>
-        </defs>
-        <path fill="url(#bs3-a)" fillRule="evenodd" d="m410 0 461 369-284 58z" transform="matrix(1 0 0 -1 -410 427)" />
-      </svg>
-    </div>
-
-    <div className="max-w-6xl mx-auto px-4 sm:px-6">
-      <div className="py-12 md:py-20 border-t [border-image:linear-gradient(to_right,transparent,var(--color-slate-800),transparent)1]">
-
-        {/* Section header */}
-        <div className="max-w-3xl mx-auto text-center pb-12 md:pb-20">
-          <div>
-            <div className="inline-flex font-medium bg-clip-text text-transparent bg-linear-to-r from-purple-500 to-purple-200 pb-3">Getting started with Stellar</div>
-          </div>
-          <h2 className="h2 bg-clip-text text-transparent bg-linear-to-r from-slate-200/60 via-slate-200 to-slate-200/60 pb-4">Everything you need to know</h2>
+    <section className="py-12 md:py-20">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6">
+        <div className="text-center mb-8 md:mb-12">
+          <h2 className="text-white text-2xl md:text-3xl font-semibold">Frequently Asked Questions</h2>
+          <p className="text-light-grey mt-2">Everything you need to feel confident before you book.</p>
         </div>
 
-        {/* Columns */}
-        <div className="md:flex md:space-x-12 space-y-8 md:space-y-0">
-
-          {/* Column */}
-          <div className="w-full md:w-1/2 space-y-8">
-
-            {/* Item */}
-            <div className="space-y-2">
-              <h4 className="font-semibold">What is Stellar?</h4>
-              <p className="text-slate-400">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis enim lobortis scelerisque fermentum.</p>
-            </div>
-
-            {/* Item */}
-            <div className="space-y-2">
-              <h4 className="font-semibold">What's an affordable alternative to Stellar?</h4>
-              <p className="text-slate-400">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis enim lobortis scelerisque fermentum.</p>
-            </div>
-
-            {/* Item */}
-            <div className="space-y-2">
-              <h4 className="font-semibold">Can I remove the 'Powered by Stellar' branding?</h4>
-              <p className="text-slate-400">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis enim lobortis scelerisque fermentum.</p>
-            </div>
-
-          </div>
-
-          {/* Column */}
-          <div className="w-full md:w-1/2 space-y-8">
-
-            {/* Item */}
-            <div className="space-y-2">
-              <h4 className="font-semibold">What kind of data can I collect from my customers?</h4>
-              <p className="text-slate-400">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis enim lobortis scelerisque fermentum.</p>
-            </div>
-
-            {/* Item */}
-            <div className="space-y-2">
-              <h4 className="font-semibold">Can I use Stellar for free?</h4>
-              <p className="text-slate-400">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis enim lobortis scelerisque fermentum.</p>
-            </div>
-
-            {/* Item */}
-            <div className="space-y-2">
-              <h4 className="font-semibold">Is Stellar affordable for small businesses?</h4>
-              <p className="text-slate-400">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis enim lobortis scelerisque fermentum.</p>
-            </div>
-
-          </div>
-
+        <div className="space-y-3">
+          {faqs.map((item, i) => (
+            <details key={i} className="group rounded-xl border border-white/10 bg-black/20 p-4 open:bg-black/30">
+              <summary className="list-none cursor-pointer flex items-center justify-between">
+                <h3 className="text-white font-medium">{item.q}</h3>
+                <span className="ml-4 inline-flex h-6 w-6 items-center justify-center rounded-full border border-white/20 text-white/80 transition transform group-open:rotate-45">+</span>
+              </summary>
+              <div className="mt-3 pl-1 border-l-2 border-gold-accent/50">
+                <p className="text-light-grey text-sm ml-3">{item.a}</p>
+              </div>
+            </details>
+          ))}
         </div>
 
+        <div className="text-center mt-8">
+          <p className="text-light-grey mb-3">Ready for answers specific to your vehicle?</p>
+          <a href="/contact" className="pill-active inline-block">CONTACT OUR EXPERT TEAM</a>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
   )
 }
