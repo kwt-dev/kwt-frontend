@@ -37,7 +37,7 @@ export default function ServicesShowcase() {
   return (
     <section className="py-12 md:py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="relative overflow-hidden rounded-[2rem] min-h-[420px]">
+        <div className="relative overflow-hidden rounded-[2rem] min-h-[520px] shadow-[0_20px_60px_rgba(0,0,0,0.35)]">
           {/* Background image with gradient overlay */}
           <div className="absolute inset-0">
             <Image src={current.image} alt="Service background" fill className="object-cover" sizes="(min-width: 1024px) 1200px, 100vw" />
@@ -63,7 +63,7 @@ export default function ServicesShowcase() {
                   key={key}
                   role="tab"
                   aria-selected={active === key}
-                  className={active === key ? 'pill-active' : 'pill-ghost'}
+                  className={(active === key ? 'pill-active' : 'pill-ghost') + ' transition-transform hover:-translate-y-0.5'}
                   onClick={() => setActive(key)}
                 >
                   {label}
@@ -72,7 +72,7 @@ export default function ServicesShowcase() {
             </div>
 
             {/* Detail panel */}
-            <div role="tabpanel" className="surface-king mt-6 sm:mt-8 p-5 sm:p-8 rounded-2xl">
+            <div role="tabpanel" className="surface-king mt-6 sm:mt-8 p-6 md:p-10 rounded-2xl max-w-4xl mx-auto">
               <h3 className="text-white text-lg md:text-xl font-semibold mb-2">{current.title}</h3>
               <p className="text-light-grey mb-5 max-w-3xl">{current.body}</p>
               <KingsButton variant="gold" href="/contact" className="w-auto px-6 py-2 text-sm">

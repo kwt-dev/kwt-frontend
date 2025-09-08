@@ -16,9 +16,9 @@ export default function KingsDifference() {
             { value: '20,000+', label: 'Vehicles Protected' },
             { value: '100%', label: '5-Star Reviews' },
           ].map((item) => (
-            <div key={item.label} className="tile-gold p-4 text-center">
-              <div className="text-2xl font-bold">{item.value}</div>
-              <div className="text-xs opacity-80">{item.label}</div>
+            <div key={item.label} className="tile-gold h-28 flex flex-col items-center justify-center text-center">
+              <div className="text-3xl font-bold tracking-tight">{item.value}</div>
+              <div className="text-xs/5 opacity-90 mt-1">{item.label}</div>
             </div>
           ))}
         </div>
@@ -52,4 +52,3 @@ export default function KingsDifference() {
     </section>
   )
 }
-

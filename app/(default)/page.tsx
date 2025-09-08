@@ -10,7 +10,6 @@ import Features from '@/components/features';
 import ServicesShowcase from '@/components/services-showcase';
 import KingsDifference from '@/components/kings-difference';
 import HeatReality from '@/components/heat-reality';
-import TrustSocialProof from '@/components/trust-social-proof';
 import Faqs from '@/components/faqs';
 import FinalCta from '@/components/final-cta';
 
@@ -33,8 +32,7 @@ export default function Home() {
       {/* Heat & Damage Reality panel */}
       <HeatReality />
 
-      {/* Trust & Social Proof strip */}
-      <TrustSocialProof />
+      {/* Trust strip intentionally omitted to match current design mock */}
 
       {/* FAQs populated with client copy */}
       <Faqs />

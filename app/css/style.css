@@ -107,7 +107,7 @@
 
   .tile-gold {
     background: var(--gradient-gold);
-    color: #111;
+    color: #fff;
     border-radius: 0.75rem;
     box-shadow: var(--shadow-gold-glow);
   }
