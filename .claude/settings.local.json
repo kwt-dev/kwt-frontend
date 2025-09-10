@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "mcp__deepwiki__ask_question"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

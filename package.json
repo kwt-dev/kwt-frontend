@@ -3,14 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack -p 4000",
+    "dev": "next dev -p 4000",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.0",
-    "@mdx-js/loader": "^3.1.0",
+    "@mdx-js/loader": "^3.1.1",
     "@mdx-js/react": "^3.1.0",
     "@next/mdx": "15.1.6",
     "@types/mdx": "^2.0.13",
@@ -20,7 +20,7 @@
     "aos": "3.0.0-beta.6",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
-    "next": "15.1.6",
+    "next": "^15.5.2",
     "next-mdx-remote": "^5.0.0",
     "react": "19.0.0",
     "react-dom": "19.0.0",
