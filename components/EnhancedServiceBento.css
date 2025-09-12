@@ -297,10 +297,41 @@
 
 /* Grid Layouts */
 
-/* Window Tinting Grid: 5 cards with featured temperature card */
+/* Window Tinting Grid: 6 cards with featured temperature card */
 .tint-grid {
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(2, minmax(200px, 1fr));
+  grid-template-rows: repeat(3, minmax(200px, auto));
+}
+
+/* Specific positioning for tint cards */
+.tint-grid .bento-card:nth-child(1) { /* 15°F - large left */
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.tint-grid .bento-card:nth-child(2) { /* 99% UV - small top right */
+  grid-column: span 1;
+  grid-row: span 1;
+}
+
+.tint-grid .bento-card:nth-child(3) { /* Crystal Clear - small top right */
+  grid-column: span 1;
+  grid-row: span 1;
+}
+
+.tint-grid .bento-card:nth-child(4) { /* Lifetime Warranty - wide middle */
+  grid-column: span 2;
+  grid-row: span 1;
+}
+
+.tint-grid .bento-card:nth-child(5) { /* $299 Price - small bottom left */
+  grid-column: span 1;
+  grid-row: span 1;
+}
+
+.tint-grid .bento-card:nth-child(6) { /* Same Day Service - wide bottom right */
+  grid-column: span 3;
+  grid-row: span 1;
 }
 
 /* PPF Grid: 6 cards with variety of sizes */
@@ -318,6 +349,63 @@
 /* Special Classes */
 .temperature-hero {
   background: linear-gradient(135deg, rgba(30, 60, 114, 0.1), rgba(42, 82, 152, 0.05));
+}
+
+/* Warranty Card Styles */
+.warranty-card {
+  background: #2a2a2a !important;
+  border: 1px solid rgba(245, 197, 66, 0.2) !important;
+  position: relative;
+  overflow: visible !important;
+}
+
+.warranty-card .bento-card__content {
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 2rem;
+}
+
+.warranty-card .bento-card__visual {
+  position: relative !important;
+  margin-right: 0 !important;
+}
+
+.warranty-card .bento-card__badge {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: transparent;
+  border: 1px solid rgba(245, 197, 66, 0.5);
+  color: #f5c542;
+  padding: 0.25rem 1rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
+.warranty-card .bento-card__primary {
+  font-size: 1.75rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.warranty-card .bento-card__secondary {
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-size: 1rem !important;
+}
+
+/* Three dots indicator */
+.warranty-card::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 3rem;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  background: #f5c542;
+  border-radius: 50%;
+  box-shadow: 12px 0 0 #f5c542, 24px 0 0 #f5c542;
 }
 
 .no-text-overlay .bento-card__content {

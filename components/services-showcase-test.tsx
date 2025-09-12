@@ -28,7 +28,7 @@ const TAB_COPY: Record<TabKey, {
       {
         id: 'tint-temp',
         size: 'large',
-        backgroundImage: '/images/car-interior-golden-hour.jpg',
+        backgroundImage: '/images/coolInterior.png',
         overlay: {
           type: 'gradient',
           value: 'linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.3) 60%, transparent 100%)',
@@ -46,7 +46,12 @@ const TAB_COPY: Record<TabKey, {
       {
         id: 'tint-uv',
         size: 'small',
-        backgroundColor: '#1a1a1a',
+        backgroundImage: '/images/subtleBg.png',
+        overlay: {
+          type: 'gradient',
+          value: 'linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 100%)',
+          opacity: 0.7
+        },
         primaryCopy: {
           text: '99%',
           size: 'large'
@@ -58,7 +63,7 @@ const TAB_COPY: Record<TabKey, {
       {
         id: 'tint-clarity',
         size: 'small',
-        backgroundImage: '/images/clear-windshield-view.jpg',
+        backgroundImage: '/images/crystalClearView.jpeg',
         overlay: {
           type: 'gradient',
           value: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 40%)',
@@ -74,14 +79,15 @@ const TAB_COPY: Record<TabKey, {
       {
         id: 'tint-warranty',
         size: 'wide',
-        backgroundGradient: 'linear-gradient(135deg, #1a1a1a 0%, #2a1520 100%)',
+        backgroundColor: '#2a2a2a',
         primaryCopy: {
           text: 'LIFETIME WARRANTY',
           size: 'medium'
         },
         secondaryCopy: 'Nationwide coverage • No questions asked',
         visualElement: 'shield',
-        badge: 'GUARANTEED'
+        badge: 'GUARANTEED',
+        customClass: 'warranty-card'
       },
       {
         id: 'tint-price',
@@ -92,6 +98,20 @@ const TAB_COPY: Record<TabKey, {
           text: 'GET QUOTE'
         },
         secondaryCopy: 'Starting price'
+      },
+      {
+        id: 'tint-schedule',
+        size: 'wide',
+        backgroundGradient: 'linear-gradient(135deg, #1a1410 0%, #2a2010 100%)',
+        primaryCopy: {
+          text: 'SAME DAY SERVICE',
+          size: 'medium'
+        },
+        secondaryCopy: 'Professional installation in 2-4 hours',
+        visualElement: 'icon',
+        cta: {
+          text: 'SCHEDULE NOW →'
+        }
       }
     ],
     bentoSettings: {
@@ -274,21 +294,21 @@ export default function ServicesShowcaseTest() {
             </div>
 
             {/* Tabs */}
-            <div role="tablist" aria-label="Services" className="flex items-center justify-center gap-[60px]">
+            <div role="tablist" aria-label="Services" className="flex items-center justify-center gap-4 md:gap-8 flex-wrap">
               {([
                 ['tint', 'WINDOW TINTING'],
                 ['ppf', 'PAINT PROTECTION FILM'],
                 ['coating', 'CERAMIC COATING'],
               ] as [TabKey, string][]).map(([key, label]) => (
-                <button
-                  key={key}
-                  role="tab"
-                  aria-selected={active === key}
-                  className={`relative w-[280px] h-10 transition-all duration-200 ${active === key ? 'pill-active' : 'pill-ghost hover:bg-white hover:text-dark-red'}`}
-                  onClick={() => setActive(key)}
-                >
-                  {label}
-                </button>
+                <div key={key} className="service-tab-wrapper">
+                  <KingsButton
+                    variant="ghost"
+                    onClick={() => setActive(key)}
+                    className="min-w-[200px] md:min-w-[260px]"
+                  >
+                    {label}
+                  </KingsButton>
+                </div>
               ))}
             </div>
 

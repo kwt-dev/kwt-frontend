@@ -1,14 +1,134 @@
 import Link from 'next/link'
 import { ReactNode } from 'react'
+import GlassSurface from '../GlassSurface'
 
 interface KingsButtonProps {
   children: ReactNode
   href?: string
-  variant?: 'primary' | 'secondary' | 'ghost' | 'badge' | 'gold'
+  variant?: 'primary' | 'secondary' | 'ghost' | 'badge' | 'gold' | 'primary-hover' | 'primary-active'
   size?: 'sm' | 'md' | 'lg'
   className?: string
   onClick?: () => void
   arrow?: boolean
+}
+
+// Glass surface parameters for each variant
+const glassVariantConfig = {
+  primary: {
+    borderRadius: 10,
+    borderWidth: 0.08,
+    brightness: 30,
+    opacity: 0.85,
+    blur: 12,
+    displace: 8,
+    backgroundOpacity: 0.4,
+    saturation: 1.2,
+    distortionScale: -150,
+    redOffset: 5,
+    greenOffset: 15,
+    blueOffset: 25,
+    mixBlendMode: 'screen' as const,
+    // Custom styling for primary variant
+    customClass: 'bg-gradient-to-r from-king-red/60 to-king-red/40'
+  },
+  secondary: {
+    borderRadius: 10,
+    borderWidth: 0.07,
+    brightness: 60,
+    opacity: 0.9,
+    blur: 8,
+    displace: 5,
+    backgroundOpacity: 0.3,
+    saturation: 1.5,
+    distortionScale: -120,
+    redOffset: 3,
+    greenOffset: 10,
+    blueOffset: 18,
+    mixBlendMode: 'difference' as const,
+    customClass: 'bg-gradient-to-r from-gold-accent/70 to-gold-accent/50'
+  },
+  ghost: {
+    borderRadius: 10,
+    borderWidth: 0.05,
+    brightness: 25,
+    opacity: 0.95,
+    blur: 6,
+    displace: 2,
+    backgroundOpacity: 0.1,
+    saturation: 0.8,
+    distortionScale: -100,
+    redOffset: 2,
+    greenOffset: 8,
+    blueOffset: 15,
+    mixBlendMode: 'normal' as const,
+    customClass: 'bg-dark-grey/10'
+  },
+  badge: {
+    borderRadius: 20,
+    borderWidth: 0.06,
+    brightness: 35,
+    opacity: 0.88,
+    blur: 10,
+    displace: 6,
+    backgroundOpacity: 0.35,
+    saturation: 1.1,
+    distortionScale: -130,
+    redOffset: 4,
+    greenOffset: 12,
+    blueOffset: 20,
+    mixBlendMode: 'screen' as const,
+    customClass: 'bg-gradient-to-r from-king-red/50 to-gold-accent/30'
+  },
+  gold: {
+    borderRadius: 12,
+    borderWidth: 0.09,
+    brightness: 55,
+    opacity: 0.92,
+    blur: 14,
+    displace: 10,
+    backgroundOpacity: 0.45,
+    saturation: 1.6,
+    distortionScale: -160,
+    redOffset: 6,
+    greenOffset: 18,
+    blueOffset: 28,
+    mixBlendMode: 'screen' as const,
+    customClass: 'bg-gradient-to-r from-gold-accent/60 via-light-brown/40 to-gold-accent/60 shadow-[0_0_20px_rgba(245,197,66,0.3)]'
+  },
+  // Hover state for primary button - tweak these values to customize
+  'primary-hover': {
+    borderRadius: 10,
+    borderWidth: 0.08,
+    brightness: 35,  // Slightly brighter on hover
+    opacity: 0.88,    // Slightly more opaque
+    blur: 14,         // More blur for depth
+    displace: 10,     // More displacement for effect
+    backgroundOpacity: 0.45,
+    saturation: 1.3,  // More saturated colors
+    distortionScale: -160,  // More distortion
+    redOffset: 6,
+    greenOffset: 18,
+    blueOffset: 30,
+    mixBlendMode: 'screen' as const,
+    customClass: 'bg-gradient-to-r from-king-red/65 to-king-red/45'
+  },
+  // Active/pressed state for primary button - tweak these values to customize  
+  'primary-active': {
+    borderRadius: 10,
+    borderWidth: 0.08,
+    brightness: 25,   // Darker when pressed
+    opacity: 0.82,    // Less opaque
+    blur: 10,         // Less blur
+    displace: 6,      // Less displacement
+    backgroundOpacity: 0.35,
+    saturation: 1.1,  // Less saturated
+    distortionScale: -140,  // Less distortion
+    redOffset: 4,
+    greenOffset: 12,
+    blueOffset: 20,
+    mixBlendMode: 'screen' as const,
+    customClass: 'bg-gradient-to-r from-king-red/55 to-king-red/35'
+  }
 }
 
 export default function KingsButton({ 
@@ -21,61 +141,75 @@ export default function KingsButton({
   arrow = false
 }: KingsButtonProps) {
   
-  const baseClasses = "transition duration-150 ease-in-out group relative inline-flex items-center justify-center"
+  const sizeClasses = {
+    sm: 'px-3 py-1.5 text-sm',
+    md: 'px-4 py-2.5 text-base',
+    lg: 'px-6 py-3 text-lg'
+  }
   
-  const variants = {
-    // Kings primary button - based on Figma glassmorphism design
-    primary: `btn text-white [background:linear-gradient(var(--color-obsidian),var(--color-obsidian))_padding-box,linear-gradient(var(--color-king-red),var(--color-king-red)_75%,transparent_100%)_border-box] relative before:absolute before:inset-0 before:bg-[rgba(4,7,7,0.32)] before:rounded-[10px] before:pointer-events-none shadow-[0px_1px_2px_0px_rgba(196,30,58,0.48)] backdrop-blur-[13.5914px] backdrop-filter border border-king-red hover:before:bg-[rgba(4,7,7,0.45)]`,
-    
-    // Gold accent secondary button
-    secondary: `btn text-obsidian bg-linear-to-r from-gold-accent via-gold-accent to-gold-accent hover:from-[#e5b342] hover:via-[#e5b342] hover:to-[#e5b342] w-full`,
-    
-    // Ghost button
-    ghost: `btn text-light-grey hover:text-white bg-transparent hover:bg-dark-grey/30 w-full border border-light-grey/30`,
-    
-    // Badge style (like the original template's announcement badge)
-    badge: `btn-sm py-0.5 text-light-grey hover:text-white [background:linear-gradient(var(--color-king-red),var(--color-king-red))_padding-box,linear-gradient(var(--color-king-red),var(--color-gold-accent)_75%,transparent_100%)_border-box] relative before:absolute before:inset-0 before:bg-obsidian/50 before:rounded-full before:pointer-events-none shadow-sm`,
-    
-    // Gold CTA button - glassmorphism design matching Figma  
-    gold: `btn text-white font-semibold relative bg-obsidian/30 backdrop-blur-sm border border-light-brown rounded-xl hover:bg-obsidian/50 transition-all duration-150 ease-in-out w-full shadow-[0_0_15px_rgba(245,197,66,0.3)] hover:shadow-[0_0_20px_rgba(245,197,66,0.4)]`
+  const textColorClasses = {
+    primary: 'text-white',
+    secondary: 'text-obsidian',
+    ghost: 'text-light-grey',
+    badge: 'text-light-grey',
+    gold: 'text-white',
+    'primary-hover': 'text-white',
+    'primary-active': 'text-white'
+  }
+  
+  const glassConfig = glassVariantConfig[variant]
+  
+  // Calculate dimensions based on size
+  const getDimensions = () => {
+    switch(size) {
+      case 'sm':
+        return { width: 'auto', height: 36 }
+      case 'lg':
+        return { width: 'auto', height: 52 }
+      default:
+        return { width: 'auto', height: 44 }
+    }
   }
 
   const content = (
-    <>
-      {/* Blurred background effect for primary buttons */}
-      {variant === 'primary' && (
-        <div className="absolute inset-0 bg-[rgba(196,30,58,0.48)] blur-[16.3097px] rounded-[30px] -z-10" />
+    <span className="relative inline-flex items-center font-montserrat font-semibold tracking-[0.25px] z-10">
+      {children}
+      {arrow && (
+        <span className="tracking-normal text-current ml-1">
+          →
+        </span>
       )}
-      
-      {/* Blurred background effect for gold buttons */}
-      {variant === 'gold' && (
-        <div className="absolute inset-0 bg-[rgba(245,197,66,0.48)] blur rounded-[10px] -z-10" />
-      )}
-      
-      <span className="relative inline-flex items-center [text-shadow:rgba(255,255,255,0.33)_0px_0px_7.1px] font-montserrat font-semibold tracking-[0.25px]">
-        {children}
-        {arrow && (
-          <span className="tracking-normal text-king-red group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">
-            →
-          </span>
-        )}
-      </span>
-    </>
+    </span>
   )
 
-  const buttonClasses = `${baseClasses} ${variants[variant]} ${className}`
+  const dimensions = getDimensions()
+  const buttonClass = `group relative inline-flex items-center justify-center ${sizeClasses[size]} ${textColorClasses[variant]} ${glassConfig.customClass} ${className}`
 
   if (href) {
     return (
-      <Link className={buttonClasses} href={href}>
-        {content}
+      <Link href={href} className="inline-block">
+        <GlassSurface
+          {...dimensions}
+          {...glassConfig}
+          className={buttonClass}
+          style={{ display: 'inline-flex' }}
+        >
+          {content}
+        </GlassSurface>
       </Link>
     )
   }
 
   return (
-    <button className={buttonClasses} onClick={onClick}>
-      {content}
-    </button>
+    <GlassSurface
+      {...dimensions}
+      {...glassConfig}
+      className={`${buttonClass} cursor-pointer`}
+      style={{ display: 'inline-flex' }}
+    >
+      <div onClick={onClick} className="w-full h-full flex items-center justify-center">
+        {content}
+      </div>
+    </GlassSurface>
   )
 }

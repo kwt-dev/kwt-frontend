@@ -1,7 +1,6 @@
 "use client"
 import Image from 'next/image'
 import { useState } from 'react'
-import { motion } from 'framer-motion'
 import KingsButton from '@/components/ui/kings-button'
 
 type TabKey = 'tint' | 'ppf' | 'coating'
@@ -58,27 +57,20 @@ export default function ServicesShowcase() {
             </div>
 
             {/* Tabs */}
-            <div role="tablist" aria-label="Services" className="flex items-center justify-center gap-[60px]">
+            <div role="tablist" aria-label="Services" className="flex items-center justify-center gap-4 md:gap-8 flex-wrap">
               {([
                 ['tint', 'WINDOW TINTING'],
                 ['ppf', 'PAINT PROTECTION FILM'],
                 ['coating', 'CERAMIC COATING'],
-              ] as [TabKey, string][]) .map(([key, label]) => (
-                <motion.button
+              ] as [TabKey, string][]).map(([key, label]) => (
+                <KingsButton
                   key={key}
-                  role="tab"
-                  aria-selected={active === key}
-                  className={(active === key ? 'pill-active' : 'pill-ghost') + ' w-[280px] h-10'}
+                  variant="ghost"
                   onClick={() => setActive(key)}
-                  whileHover={active !== key ? { 
-                    backgroundColor: "rgba(255,255,255,1)",
-                    color: "#672530",
-                    transition: { duration: 0.2, ease: "easeOut" }
-                  } : undefined}
-                  whileTap={{ opacity: 0.9 }}
+                  className="min-w-[200px] md:min-w-[260px]"
                 >
                   {label}
-                </motion.button>
+                </KingsButton>
               ))}
             </div>
 

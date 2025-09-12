@@ -1,50 +1,26 @@
 /* Services Showcase Tab Styles */
 
-/* Override pill-ghost hover state */
+/* Service Tab Styles - Clean slate for glass effects */
 .pill-ghost {
   position: relative;
-  transition: all 0.2s ease-out;
   cursor: pointer;
 }
 
-.pill-ghost:hover {
-  background: rgba(255, 255, 255, 1) !important;
-  color: #672530 !important;
-  border-color: rgba(255, 255, 255, 1) !important;
-}
-
-/* Ensure pill-active doesn't change on hover */
 .pill-active {
   position: relative;
   cursor: pointer;
 }
 
-.pill-active:hover {
-  background: rgba(4,7,7,0.32) !important;
-  color: white !important;
-  border-color: rgba(196,30,58,0.5) !important;
+/* Remove hover effects for service tab buttons */
+.service-tab-wrapper .glass-surface:hover {
+  transform: none !important;
+  scale: 1 !important;
 }
 
-/* Fix z-index issues with pseudo-element */
-.pill-active::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  height: 40.5px;
-  background: rgba(196,30,58,0.1);
-  filter: blur(16.31px);
-  border-radius: 10px;
-  z-index: -1;
-  pointer-events: none;
+.service-tab-wrapper button {
+  pointer-events: auto;
 }
 
-/* Prevent multiple active states */
-.pill-ghost.pill-active {
-  /* This shouldn't happen, but if it does, treat as active */
-  background: rgba(4,7,7,0.32) !important;
-  color: white !important;
-  border: 0.5px solid rgba(196,30,58,0.5) !important;
+.service-tab-wrapper > div:hover {
+  transform: none !important;
 }

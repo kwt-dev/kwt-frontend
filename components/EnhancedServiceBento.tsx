@@ -2,6 +2,8 @@
 import React from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
+import { Shield, Zap, Eye, MoreHorizontal } from 'lucide-react'
+import KingsButton from '@/components/ui/kings-button'
 import './EnhancedServiceBento.css'
 
 export interface EnhancedBentoCard {
@@ -92,28 +94,40 @@ export default function EnhancedServiceBento({ cards, settings }: EnhancedServic
               </div>
             )}
             
-            {/* Primary Copy */}
-            {card.primaryCopy && (
-              <h3 className={`bento-card__primary bento-card__primary--${card.primaryCopy.size || 'large'}`}>
-                {card.primaryCopy.highlight ? (
-                  <span className="highlight">{card.primaryCopy.text}</span>
-                ) : card.primaryCopy.text}
-              </h3>
+            {/* Visual Elements - Positioned first for warranty card */}
+            {card.visualElement && card.visualElement !== 'none' && card.customClass === 'warranty-card' && (
+              <div className={`bento-card__visual bento-card__visual--${card.visualElement}`}>
+                <div className="w-14 h-14 rounded-full bg-gold-accent/20 flex items-center justify-center">
+                  <Shield className="w-8 h-8 text-gold-accent" strokeWidth={1.5} />
+                </div>
+              </div>
             )}
             
-            {/* Secondary Copy */}
-            {card.secondaryCopy && (
-              <p className="bento-card__secondary">
-                {card.secondaryCopy}
-              </p>
-            )}
-            
-            {/* Tertiary Copy */}
-            {card.tertiaryCopy && (
-              <p className="bento-card__tertiary">
-                {card.tertiaryCopy}
-              </p>
-            )}
+            {/* Text Content Wrapper for warranty card */}
+            <div className={card.customClass === 'warranty-card' ? 'flex-1' : ''}>
+              {/* Primary Copy */}
+              {card.primaryCopy && (
+                <h3 className={`bento-card__primary bento-card__primary--${card.primaryCopy.size || 'large'}`}>
+                  {card.primaryCopy.highlight ? (
+                    <span className="highlight">{card.primaryCopy.text}</span>
+                  ) : card.primaryCopy.text}
+                </h3>
+              )}
+              
+              {/* Secondary Copy */}
+              {card.secondaryCopy && (
+                <p className="bento-card__secondary">
+                  {card.secondaryCopy}
+                </p>
+              )}
+              
+              {/* Tertiary Copy */}
+              {card.tertiaryCopy && (
+                <p className="bento-card__tertiary">
+                  {card.tertiaryCopy}
+                </p>
+              )}
+            </div>
             
             {/* CTA */}
             {card.cta && (
@@ -122,17 +136,32 @@ export default function EnhancedServiceBento({ cards, settings }: EnhancedServic
                   <span className="bento-card__price">{card.cta.price}</span>
                 )}
                 {card.cta.text && (
-                  <button className="bento-card__button">
+                  <KingsButton 
+                    variant="primary"
+                    size="md"
+                    href={card.cta.link}
+                    className="mt-2"
+                  >
                     {card.cta.text}
-                  </button>
+                  </KingsButton>
                 )}
               </div>
             )}
             
-            {/* Visual Elements */}
-            {card.visualElement && card.visualElement !== 'none' && (
+            {/* Visual Elements for non-warranty cards */}
+            {card.visualElement && card.visualElement !== 'none' && card.customClass !== 'warranty-card' && (
               <div className={`bento-card__visual bento-card__visual--${card.visualElement}`}>
-                {/* Visual element content */}
+                {card.visualElement === 'shield' && (
+                  <div className="w-14 h-14 rounded-full bg-gold-accent/20 flex items-center justify-center">
+                    <Shield className="w-8 h-8 text-gold-accent" strokeWidth={1.5} />
+                  </div>
+                )}
+                {card.visualElement === 'icon' && (
+                  <Eye className="w-6 h-6 text-white/60" strokeWidth={1.5} />
+                )}
+                {card.visualElement === 'graph' && (
+                  <Zap className="w-6 h-6 text-gold-accent" strokeWidth={1.5} />
+                )}
               </div>
             )}
             
