@@ -3,7 +3,7 @@ import KingsButton from './ui/kings-button';
 
 export default function Hero() {
   return (
-    <section className="w-full">
+    <section className="w-full pb-6 md:pb8">
       <div className="relative h-140 flex max-w-7xl mx-auto items-end overflow-hidden pt-24 rounded-b-[3rem]">
         {/* Background Image */}
         <div id="backgroundHeroImg" className="absolute inset-0 rounded-b-[3rem] overflow-hidden">

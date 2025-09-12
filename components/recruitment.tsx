@@ -95,7 +95,7 @@ export default function Recruitment() {
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="py-12 md:py-20 border-t [border-image:linear-gradient(to_right,transparent,var(--color-slate-800),transparent)1]">
+        <div className="py-6 md:py-8 border-t [border-image:linear-gradient(to_right,transparent,var(--color-slate-800),transparent)1]">
 
           {/* Section header */}
           <div className="max-w-3xl mx-auto text-center pb-12 md:pb-20">
@@ -172,7 +172,7 @@ export default function Recruitment() {
           </svg>
         </div>
 
-        <div className="max-w-3xl mx-auto py-12 md:py-20">
+        <div className="max-w-3xl mx-auto py-6 md:py-8">
           <h3 className="h3 inline-flex bg-clip-text text-transparent bg-linear-to-r from-slate-200/60 via-slate-200 to-slate-200/60 pb-8 md:pb-16">Open positions</h3>
           <div className="space-y-8">
 

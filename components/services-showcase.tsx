@@ -1,6 +1,7 @@
 "use client"
 import Image from 'next/image'
 import { useState } from 'react'
+import { motion } from 'framer-motion'
 import KingsButton from '@/components/ui/kings-button'
 
 type TabKey = 'tint' | 'ppf' | 'coating'
@@ -11,7 +12,7 @@ const TAB_COPY: Record<TabKey, { title: string; body: string; cta: string; image
     body:
       "Stop dreading hot days and sun glare. Our precision-installed ceramic tint delivers up to 15°F cooler interiors, 99% UV protection, and crystal-clear visibility that won't interfere with electronics.",
     cta: 'SECURE YOUR COOL, COMFORTABLE RIDE',
-    image: '/images/tint.webp',
+    image: '/images/solutionsUpgrade.webp',
   },
   ppf: {
     title: "Invisible Armor That Keeps Your Vehicle Looking Showroom-New",
@@ -35,49 +36,67 @@ export default function ServicesShowcase() {
   const current = TAB_COPY[active]
 
   return (
-    <section className="py-12 md:py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="relative overflow-hidden rounded-[2rem] min-h-[520px] shadow-[0_20px_60px_rgba(0,0,0,0.35)]">
+    <section className="py-6 md:py-8">
+      <div className="max-w-7xl mx-auto">
+        <div className="relative overflow-hidden rounded-[2rem] min-h-[520px]">
           {/* Background image with gradient overlay */}
           <div className="absolute inset-0">
             <Image src={current.image} alt="Service background" fill className="object-cover" sizes="(min-width: 1024px) 1200px, 100vw" />
-            <div className="absolute inset-0 bg-[radial-gradient(120%_80%_at_70%_20%,rgba(0,0,0,0.35)_0%,rgba(0,0,0,0.75)_60%,rgba(0,0,0,0.85)_100%)]" />
+            <div className="absolute inset-0 opacity-50 bg-[radial-gradient(120%_80%_at_70%_20%,rgba(0,0,0,0.35)_0%,rgba(0,0,0,0.75)_60%,rgba(0,0,0,0.85)_100%)]" />
           </div>
 
           {/* Content */}
-          <div className="relative p-6 sm:p-10 md:p-14">
+          <div className="relative pt-8 pb-10 px-8 sm:pt-14 pb-18 px-14 md:pt-20 pb-26 px-20">
             <div className="text-center mb-6">
-              <div className="text-xs uppercase tracking-[.25em] text-light-grey/80 mb-2">Solutions We Offer</div>
-              <h2 className="text-white text-2xl md:text-3xl font-semibold">Three Ways to Upgrade Your Vehicle</h2>
-              <p className="text-light-grey mt-2 text-sm max-w-2xl mx-auto">Quality that transforms how your vehicle looks, feels, and performs—backed by our 25+ years and uncompromising craftsmanship.</p>
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <span className="h-[0.5px] w-8 bg-gold-accent"></span>
+                <span className="text-xs uppercase tracking-[.25em] text-white font-medium">Satisfaction Guaranteed</span>
+                <span className="h-[0.5px] w-8 bg-gold-accent"></span>
+              </div>
+              <h2 className="text-white text-2xl md:text-3xl font-semibold pb-8">Three Ways to Upgrade Your Vehicle</h2>
+              {/* <p className="text-white mt-2 text-sm max-w-2xl mx-auto">Quality that transforms how your vehicle looks, feels, and performs—backed by our 25+ years and uncompromising craftsmanship.</p> */}
             </div>
 
             {/* Tabs */}
-            <div role="tablist" aria-label="Services" className="flex items-center justify-center gap-3">
+            <div role="tablist" aria-label="Services" className="flex items-center justify-center gap-[60px]">
               {([
-                ['tint', 'Window Tinting'],
-                ['ppf', 'Paint Protection Film'],
-                ['coating', 'Ceramic Coating'],
+                ['tint', 'WINDOW TINTING'],
+                ['ppf', 'PAINT PROTECTION FILM'],
+                ['coating', 'CERAMIC COATING'],
               ] as [TabKey, string][]) .map(([key, label]) => (
-                <button
+                <motion.button
                   key={key}
                   role="tab"
                   aria-selected={active === key}
-                  className={(active === key ? 'pill-active' : 'pill-ghost') + ' transition-transform hover:-translate-y-0.5'}
+                  className={(active === key ? 'pill-active' : 'pill-ghost') + ' w-[280px] h-10'}
                   onClick={() => setActive(key)}
+                  whileHover={active !== key ? { 
+                    backgroundColor: "rgba(255,255,255,1)",
+                    color: "#672530",
+                    transition: { duration: 0.2, ease: "easeOut" }
+                  } : undefined}
+                  whileTap={{ opacity: 0.9 }}
                 >
                   {label}
-                </button>
+                </motion.button>
               ))}
             </div>
 
             {/* Detail panel */}
-            <div role="tabpanel" className="surface-king mt-6 sm:mt-8 p-6 md:p-10 rounded-2xl max-w-4xl mx-auto">
+            <div 
+              role="tabpanel" 
+              className="mt-6 sm:mt-8 p-6 md:p-10 rounded-[20px] mx-auto relative overflow-hidden"
+              style={{
+                width: '960px',
+                maxWidth: '100%',
+                background: 'linear-gradient(135deg, rgba(196, 30, 58, 0.25) 0%, rgba(103, 37, 48, 0.35) 50%, rgba(40, 15, 25, 0.4) 100%)',
+                backdropFilter: 'blur(13.591px)',
+                border: '0.5px solid rgba(196, 30, 58, 0.3)',
+                boxShadow: '0px 1px 2px 0px rgba(196,30,58,0.4), inset 0px 0px 40px rgba(196,30,58,0.15)'
+              }}
+            >
               <h3 className="text-white text-lg md:text-xl font-semibold mb-2">{current.title}</h3>
-              <p className="text-light-grey mb-5 max-w-3xl">{current.body}</p>
-              <KingsButton variant="gold" href="/contact" className="w-auto px-6 py-2 text-sm">
-                {current.cta}
-              </KingsButton>
+              <p className="text-light-grey mb-5 max-w-3xl opacity-50">{current.body}</p>
             </div>
           </div>
         </div>

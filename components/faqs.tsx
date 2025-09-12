@@ -28,7 +28,7 @@ export default function Faqs() {
   ]
 
   return (
-    <section className="py-12 md:py-20">
+    <section className="py-6 md:py-8">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-8 md:mb-12">
           <h2 className="text-white text-2xl md:text-3xl font-semibold">Frequently Asked Questions</h2>

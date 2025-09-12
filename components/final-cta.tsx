@@ -2,7 +2,7 @@ import KingsButton from '@/components/ui/kings-button'
 
 export default function FinalCta() {
   return (
-    <section className="py-12 md:py-20">
+    <section className="py-6 md:py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="surface-king rounded-[2rem] p-8 md:p-12 text-center">
           <h2 className="text-white text-2xl md:text-3xl font-semibold mb-2">Ready to Drive in Comfort Instead of an Oven?</h2>

@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 export default function TrustSocialProof() {
   return (
-    <section className="py-12 md:py-16">
+    <section className="py-6 md:py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Ratings row */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-8">

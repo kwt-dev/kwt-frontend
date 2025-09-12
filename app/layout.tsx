@@ -27,7 +27,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className="scroll-smooth">
       <body
-        className={`${montserrat.variable} ${poppins.variable} font-poppins antialiased bg-dark-grey text-light-grey tracking-tight`}
+        className={`${montserrat.variable} ${poppins.variable} font-poppins antialiased text-light-grey tracking-tight`}
+        style={{ backgroundColor: '#121212' }}
       >
         <div className="flex flex-col min-h-screen overflow-hidden supports-[overflow:clip]:overflow-clip">
           {children}

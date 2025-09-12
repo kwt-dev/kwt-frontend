@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 export default function HeatReality() {
   return (
-    <section className="py-12 md:py-20">
+    <section className="py-6 md:py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="surface-king p-6 md:p-8 rounded-[2rem]">
           <div className="text-center mb-6">
