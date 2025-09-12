@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@acme/booking-stepper-full-ui": "file:C:/Users/spmcc/Documents/__Project_Code/acme-booking-stepper-full-ui-0.1.0.tgz",
     "@headlessui/react": "^2.2.0",
     "@mdx-js/loader": "^3.1.1",
     "@mdx-js/react": "^3.1.0",

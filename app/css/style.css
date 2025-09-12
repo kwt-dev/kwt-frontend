@@ -125,6 +125,20 @@
     backdrop-filter: blur(6px);
   }
 
+  .tw-connector-fill {
+    background:#f5c542 !important;
+  }
+
+  .tw-master-node {
+    border-color: #f5c542 !important;
+    color: #f5c542 !important;
+  }
+
+  .tw-master-label {
+    color: #ffffff !important;
+    text-transform: uppercase;
+  }
+
   .pill-ghost {
     display: flex;
     align-items: center;

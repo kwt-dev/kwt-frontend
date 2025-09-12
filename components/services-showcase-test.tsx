@@ -3,7 +3,8 @@ import Image from 'next/image'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import KingsButton from '@/components/ui/kings-button'
-import ServiceBentoGrid from './ServiceBentoGrid'
+import EnhancedServiceBento, { type EnhancedBentoCard } from './EnhancedServiceBento'
+import './ServicesShowcase.css'
 
 type TabKey = 'tint' | 'ppf' | 'coating'
 
@@ -11,20 +12,11 @@ const TAB_COPY: Record<TabKey, {
   title: string; 
   body: string; 
   cta: string; 
-  image: string; 
-  bentoCards: Array<{ title: string; description: string; label: string }>;
+  bentoCards: EnhancedBentoCard[];
   bentoSettings?: {
-    textAutoHide?: boolean;
-    enableStars?: boolean;
-    enableSpotlight?: boolean;
-    enableBorderGlow?: boolean;
-    enableTilt?: boolean;
-    enableMagnetism?: boolean;
-    clickEffect?: boolean;
-    spotlightRadius?: number;
-    particleCount?: number;
     glowColor?: string;
-    cardColor?: string;
+    enableHover?: boolean;
+    gridLayout?: string;
   }
 }> = {
   tint: {
@@ -32,50 +24,80 @@ const TAB_COPY: Record<TabKey, {
     body:
       "Stop dreading hot days and sun glare. Our precision-installed ceramic tint delivers up to 15°F cooler interiors, 99% UV protection, and crystal-clear visibility that won't interfere with electronics.",
     cta: 'SECURE YOUR COOL, COMFORTABLE RIDE',
-    image: '/images/solutionsUpgrade.webp',
     bentoCards: [
       {
-        title: 'Heat Reduction',
-        description: 'Up to 15°F cooler interior temperatures',
-        label: 'Comfort'
+        id: 'tint-temp',
+        size: 'large',
+        backgroundImage: '/images/car-interior-golden-hour.jpg',
+        overlay: {
+          type: 'gradient',
+          value: 'linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.3) 60%, transparent 100%)',
+          opacity: 0.7
+        },
+        primaryCopy: {
+          text: '15°F',
+          size: 'huge',
+          highlight: true
+        },
+        secondaryCopy: 'COOLER INTERIOR',
+        animation: 'heatWave',
+        customClass: 'temperature-hero'
       },
       {
-        title: 'UV Protection',
-        description: '99% harmful UV ray blockage',
-        label: 'Health'
+        id: 'tint-uv',
+        size: 'small',
+        backgroundColor: '#1a1a1a',
+        primaryCopy: {
+          text: '99%',
+          size: 'large'
+        },
+        secondaryCopy: 'UV RADIATION BLOCKED',
+        tertiaryCopy: 'SPF 1000+ equivalent',
+        visualElement: 'shield'
       },
       {
-        title: 'Glare Control',
-        description: 'Enhanced visibility in bright conditions',
-        label: 'Safety'
+        id: 'tint-clarity',
+        size: 'small',
+        backgroundImage: '/images/clear-windshield-view.jpg',
+        overlay: {
+          type: 'gradient',
+          value: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 40%)',
+          opacity: 0.8
+        },
+        primaryCopy: {
+          text: 'CRYSTAL CLEAR VIEW',
+          size: 'medium'
+        },
+        secondaryCopy: 'Zero electronic interference',
+        visualElement: 'icon'
       },
       {
-        title: 'Privacy Shield',
-        description: 'Increased security and privacy',
-        label: 'Security'
+        id: 'tint-warranty',
+        size: 'wide',
+        backgroundGradient: 'linear-gradient(135deg, #1a1a1a 0%, #2a1520 100%)',
+        primaryCopy: {
+          text: 'LIFETIME WARRANTY',
+          size: 'medium'
+        },
+        secondaryCopy: 'Nationwide coverage • No questions asked',
+        visualElement: 'shield',
+        badge: 'GUARANTEED'
       },
       {
-        title: 'Signal Friendly',
-        description: 'No interference with electronics',
-        label: 'Technology'
-      },
-      {
-        title: 'Lifetime Warranty',
-        description: 'Comprehensive coverage for years',
-        label: 'Protection'
+        id: 'tint-price',
+        size: 'small',
+        backgroundGradient: 'linear-gradient(135deg, #c41e3a 0%, #672530 100%)',
+        cta: {
+          price: '$299',
+          text: 'GET QUOTE'
+        },
+        secondaryCopy: 'Starting price'
       }
     ],
     bentoSettings: {
-      textAutoHide: false,
-      enableStars: false,
-      enableSpotlight: false,
-      enableBorderGlow: true,
-      enableTilt: false,
-      enableMagnetism: false,
-      clickEffect: false,
       glowColor: "196, 30, 58",
-      cardColor: "#100a1a",
-      gridLayout: "2x3"  // Simple 2 rows, 3 columns
+      enableHover: true,
+      gridLayout: "tint-grid"
     }
   },
   ppf: {
@@ -83,52 +105,87 @@ const TAB_COPY: Record<TabKey, {
     body:
       'Every drive threatens your finish with rock chips and road debris. Our precision-cut PPF creates an invisible shield that self-heals minor scratches while preserving original brilliance.',
     cta: "SHIELD YOUR VEHICLE'S VALUE",
-    image: '/images/ppf.webp',
     bentoCards: [
       {
-        title: 'Self-Healing',
-        description: 'Minor scratches disappear with heat',
-        label: 'Innovation'
+        id: 'ppf-healing',
+        size: 'wide',
+        backgroundImage: '/images/self-healing-film.jpg',
+        overlay: {
+          type: 'gradient',
+          value: 'linear-gradient(90deg, rgba(0,0,0,0.7) 0%, transparent 50%)',
+          opacity: 0.8
+        },
+        badge: 'SELF-HEALING TECHNOLOGY',
+        animation: 'scratch',
+        primaryCopy: {
+          text: 'Scratches Disappear',
+          size: 'medium'
+        }
       },
       {
-        title: 'Rock Chip Defense',
-        description: 'Military-grade impact protection',
-        label: 'Armor'
+        id: 'ppf-comparison',
+        size: 'tall',
+        backgroundImage: '/images/before-after-ppf.jpg',
+        primaryCopy: {
+          text: 'BEFORE/AFTER',
+          size: 'small'
+        },
+        badge: '5 YEAR WARRANTY'
       },
       {
-        title: 'Stain Resistance',
-        description: 'Repels road grime and contaminants',
-        label: 'Clean'
+        id: 'ppf-military',
+        size: 'small',
+        backgroundColor: '#000000',
+        primaryCopy: {
+          text: '8mil',
+          size: 'huge'
+        },
+        secondaryCopy: 'MILITARY-GRADE THICKNESS',
+        visualElement: 'shield'
       },
       {
-        title: 'Crystal Clear',
-        description: 'Invisible protection maintains aesthetics',
-        label: 'Clarity'
+        id: 'ppf-coverage',
+        size: 'large',
+        backgroundImage: '/images/car-diagram.jpg',
+        overlay: {
+          type: 'solid',
+          value: 'rgba(0,0,0,0.4)',
+          opacity: 0.6
+        },
+        primaryCopy: {
+          text: 'CHOOSE YOUR COVERAGE',
+          size: 'medium'
+        },
+        secondaryCopy: 'Full Front • Partial • Track Pack • Full Body',
+        visualElement: 'diagram'
       },
       {
-        title: 'Custom Fit',
-        description: 'Precision-cut for perfect coverage',
-        label: 'Precision'
+        id: 'ppf-value',
+        size: 'small',
+        backgroundColor: '#1a1a1a',
+        primaryCopy: {
+          text: '10%',
+          size: 'large'
+        },
+        secondaryCopy: 'HIGHER RESALE VALUE',
+        tertiaryCopy: 'Documented protection history',
+        visualElement: 'graph'
       },
       {
-        title: 'Value Protection',
-        description: 'Preserves paint and resale value',
-        label: 'Investment'
+        id: 'ppf-pricing',
+        size: 'wide',
+        backgroundGradient: 'linear-gradient(135deg, #1a1410 0%, #2a2010 100%)',
+        cta: {
+          price: '$1,299',
+          text: 'VIEW ALL OPTIONS →'
+        },
+        secondaryCopy: 'Partial coverage starting at'
       }
     ],
     bentoSettings: {
-      textAutoHide: false,
-      enableStars: true,
-      enableSpotlight: true,
-      enableBorderGlow: true,
-      enableTilt: true,
-      enableMagnetism: true,
-      clickEffect: true,
-      particleCount: 15,
-      spotlightRadius: 400,
-      glowColor: "245, 197, 66",  // Gold accent for PPF
-      cardColor: "#1a1410",
-      gridLayout: "featured"  // Mixed sizes with featured cards
+      glowColor: "245, 197, 66",
+      enableHover: true,
+      gridLayout: "ppf-grid"
     }
   },
   coating: {
@@ -136,51 +193,55 @@ const TAB_COPY: Record<TabKey, {
     body:
       'Enhance appearance while creating a hydrophobic barrier that repels water, dirt, and contaminants. Washing becomes easier while long-term gloss turns heads.',
     cta: "ENHANCE YOUR VEHICLE'S BEAUTY",
-    image: '/images/ceramicCoating.webp',
     bentoCards: [
       {
-        title: 'Hydrophobic',
-        description: 'Water beads and rolls off effortlessly',
-        label: 'Protection'
+        id: 'ceramic-hero',
+        size: 'xlarge',
+        backgroundImage: '/images/water-beading-hood.jpg',
+        animation: 'waterBead',
+        customClass: 'no-text-overlay'
       },
       {
-        title: 'Deep Gloss',
-        description: 'Mirror-like shine that lasts for years',
-        label: 'Brilliance'
+        id: 'ceramic-durability',
+        size: 'tall',
+        backgroundColor: '#040707',
+        primaryCopy: {
+          text: '5',
+          size: 'huge'
+        },
+        secondaryCopy: 'YEARS',
+        tertiaryCopy: 'Of brilliant protection',
+        badge: 'With recommended maintenance'
       },
       {
-        title: 'Easy Clean',
-        description: 'Dirt and grime wash away easily',
-        label: 'Convenience'
+        id: 'ceramic-maintenance',
+        size: 'small',
+        backgroundColor: '#262626',
+        primaryCopy: {
+          text: '75%',
+          size: 'large'
+        },
+        secondaryCopy: 'LESS WASHING',
+        tertiaryCopy: 'Self-cleaning hydrophobic surface',
+        visualElement: 'icon'
       },
       {
-        title: 'Chemical Shield',
-        description: 'Resists bird droppings and acid rain',
-        label: 'Defense'
-      },
-      {
-        title: 'UV Blocking',
-        description: 'Prevents paint fade and oxidation',
-        label: 'Longevity'
-      },
-      {
-        title: 'Scratch Resistance',
-        description: 'Added hardness protects clear coat',
-        label: 'Durability'
+        id: 'ceramic-price',
+        size: 'wide',
+        backgroundGradient: 'linear-gradient(135deg, #1a1612 0%, #2a2012 100%)',
+        cta: {
+          price: '$899',
+          text: 'BOOK CONSULTATION'
+        },
+        secondaryCopy: 'Professional ceramic application',
+        tertiaryCopy: 'Includes paint correction',
+        animation: 'sparkle'
       }
     ],
     bentoSettings: {
-      textAutoHide: true,
-      enableStars: false,
-      enableSpotlight: true,
-      enableBorderGlow: true,
-      enableTilt: true,
-      enableMagnetism: false,
-      clickEffect: true,
-      spotlightRadius: 250,
-      glowColor: "139, 115, 85",  // Light brown for Ceramic
-      cardColor: "#1a1612",
-      gridLayout: "3x2"  // 3 columns, 2 rows
+      glowColor: "139, 115, 85",
+      enableHover: true,
+      gridLayout: "ceramic-grid"
     }
   },
 }
@@ -194,9 +255,9 @@ export default function ServicesShowcaseTest() {
     <section className="py-6 md:py-8">
       <div className="max-w-7xl mx-auto">
         <div className="relative overflow-hidden rounded-[2rem] min-h-[520px]">
-          {/* Background image with gradient overlay */}
+          {/* Static background with gradient overlay */}
           <div className="absolute inset-0">
-            <Image src={current.image} alt="Service background" fill className="object-cover" sizes="(min-width: 1024px) 1200px, 100vw" />
+            <Image src="/images/solutionsUpgrade.webp" alt="Service background" fill className="object-cover" sizes="(min-width: 1024px) 1200px, 100vw" />
             <div className="absolute inset-0 opacity-50 bg-[radial-gradient(120%_80%_at_70%_20%,rgba(0,0,0,0.35)_0%,rgba(0,0,0,0.75)_60%,rgba(0,0,0,0.85)_100%)]" />
           </div>
 
@@ -218,22 +279,16 @@ export default function ServicesShowcaseTest() {
                 ['tint', 'WINDOW TINTING'],
                 ['ppf', 'PAINT PROTECTION FILM'],
                 ['coating', 'CERAMIC COATING'],
-              ] as [TabKey, string][]) .map(([key, label]) => (
-                <motion.button
+              ] as [TabKey, string][]).map(([key, label]) => (
+                <button
                   key={key}
                   role="tab"
                   aria-selected={active === key}
-                  className={(active === key ? 'pill-active' : 'pill-ghost') + ' w-[280px] h-10'}
+                  className={`relative w-[280px] h-10 transition-all duration-200 ${active === key ? 'pill-active' : 'pill-ghost hover:bg-white hover:text-dark-red'}`}
                   onClick={() => setActive(key)}
-                  whileHover={active !== key ? { 
-                    backgroundColor: "rgba(255,255,255,1)",
-                    color: "#672530",
-                    transition: { duration: 0.2, ease: "easeOut" }
-                  } : undefined}
-                  whileTap={{ opacity: 0.9 }}
                 >
                   {label}
-                </motion.button>
+                </button>
               ))}
             </div>
 
@@ -246,7 +301,7 @@ export default function ServicesShowcaseTest() {
                 maxWidth: '1200px'
               }}
             >
-              <ServiceBentoGrid 
+              <EnhancedServiceBento 
               cards={current.bentoCards} 
               settings={current.bentoSettings}
             />

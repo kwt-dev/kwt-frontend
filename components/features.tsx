@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+  import { WindowTintingBookingStepper } from "@acme/booking-stepper-full-ui";
 
 export default function Features() {
   const [tab, setTab] = useState<number>(1);
@@ -22,6 +23,12 @@ export default function Features() {
           <div>
             {/* Section content */}
             <div className="max-w-xl mx-auto md:max-w-none flex flex-col md:flex-row md:space-x-8 lg:space-x-16 xl:space-x-20 space-y-8 space-y-reverse md:space-y-0"></div>
+                <WindowTintingBookingStepper
+                onConfirm={(payload, data) => {
+                  // handle submit
+                  console.log(payload, data);
+                }}
+              />
           </div>
         </div>
       </div>
