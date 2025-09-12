@@ -32,7 +32,7 @@ export default function Home() {
       <KingsDifference />
 
       {/* Heat & Damage Reality panel */}
-      <HeatReality />
+      {/* <HeatReality /> */}
 
       {/* Trust strip intentionally omitted to match current design mock */}
 
