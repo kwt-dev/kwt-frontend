@@ -8,6 +8,7 @@ import ServicesSection from '@/components/services-section';
 import Features from '@/components/features';
 // New custom sections for King's redesign
 import ServicesShowcase from '@/components/services-showcase';
+import ServicesShowcaseTest from '@/components/services-showcase-test';
 import KingsDifference from '@/components/kings-difference';
 import HeatReality from '@/components/heat-reality';
 import Faqs from '@/components/faqs';
@@ -25,6 +26,7 @@ export default function Home() {
 
       {/* Main services showcase (large panel with tabs) */}
       <ServicesShowcase />
+       <ServicesShowcaseTest />
 
       {/* King's Difference stats & narrative */}
       <KingsDifference />
